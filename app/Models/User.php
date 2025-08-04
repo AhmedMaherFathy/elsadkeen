@@ -61,4 +61,15 @@ class User extends Authenticatable
     {
         return $this->hasOne(Attribute::class);
     }
+
+    public function getImageAttribute()
+    {
+        $image = $this->attributes['image'] ?? null;
+
+        if ($image && file_exists(public_path('storage/' . $image))) {
+            return asset('storage/' . $image);
+        }
+
+        return asset($this->gender === 'male' ? 'storage/male.png' : 'storage/female.png');
+    }
 }
