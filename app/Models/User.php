@@ -70,7 +70,7 @@ class User extends Authenticatable
             return asset('storage/' . $image);
         }
 
-        return asset($this->gender === 'male' ? 'storage/male.png' : 'storage/female.png');
+        return asset($this->gender === 'male' ? 'assets/img/male.png' : 'assets/img/female.png');
     }
 
     public function likes()
