@@ -83,4 +83,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'favorites', 'liked_user_id', 'user_id');
     }
+
+    public function setImageAttribute()
+    {
+        if (isset($this->attributes['image']) && !empty($this->attributes['image'])) {
+            $this->attributes['image'] = 'storage/' . $this->attributes['image'];
+        }
+    }
 }

@@ -73,8 +73,5 @@ class AuthController extends Controller
         return $this->successResponse(UserResource::make($user));
     }
 
-    // public function updateImage()
-    // {
-        
-    // }
+    
 }

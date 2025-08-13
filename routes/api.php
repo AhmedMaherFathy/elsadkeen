@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\SelectMenuController;
 use App\Http\Controllers\Api\UserLikeController;
 use App\Http\Controllers\Api\NationalityController;
@@ -36,4 +37,6 @@ Route::prefix('user')->group(function(){
 
     Route::get('/like/user/{id}', [UserLikeController::class, 'likeUser'])->middleware('auth:sanctum');
     Route::get('/like/list', [UserLikeController::class, 'myFavoriteUsers'])->middleware('auth:sanctum');
+
+    Route::get('/blogs',[BlogController::class,'index']);
 });

@@ -42,4 +42,10 @@ class Blog extends Model
             $this->attributes['image'] = $path;
         }
     }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('Y-m-d H:i:s');
+    }
+
 }

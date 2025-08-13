@@ -18,7 +18,7 @@ class SuccessStory extends Model
 
     public function getImageAttribute()
     {   
-        info($this->attributes['image']);
+        // info($this->attributes['image']);
         return asset('storage/' . $this->attributes['image']) ?? asset('storage/success-story.png');
     }
 
