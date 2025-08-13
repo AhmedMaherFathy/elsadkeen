@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\UserLikeController;
 use App\Http\Controllers\Api\NationalityController;
 use App\Http\Controllers\Api\SupportChatController;
 use App\Http\Controllers\Api\ForgetPasswordController;
+use App\Http\Controllers\Api\SettingController;
 
 Route::get('/user', function (Request $request) {
     return view('forget-password-otp');
@@ -39,4 +40,6 @@ Route::prefix('user')->group(function(){
     Route::get('/like/list', [UserLikeController::class, 'myFavoriteUsers'])->middleware('auth:sanctum');
 
     Route::get('/blogs',[BlogController::class,'index']);
+
+    Route::get('/aboutUs',[SettingController::class,'aboutUs']);
 });
