@@ -14,7 +14,7 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
-        $query = User::with('attribute');
+        $query = User::with('attribute','attribute.nationality', 'attribute.city', 'attribute.country');
 
         if ($request->has('user_name')) {
             $query->where('name', 'LIKE','%'.$request->user_name.'%');

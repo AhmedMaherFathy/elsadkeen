@@ -23,9 +23,9 @@ class UserResource extends JsonResource
             'gender'                     => $this->gender,
             'image'                      => $this->image,
             'fcm_token'                  => $this->fcm_token,
-            'token'                      => $this->when(isset($this->token), $this->token),
+            'token'                      => $this->when(property_exists($this, 'token'), $this->token),
             'created_at'                 => $this->created_at,
-            'attributes'                 => $this->whenLoaded('attribute'),
+            'attribute'                  => new AttributeResource($this->whenLoaded('attribute')),
         ];
     }
 }

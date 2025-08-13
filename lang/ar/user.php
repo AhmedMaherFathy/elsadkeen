@@ -9,4 +9,8 @@ return[
     'invalid_otp' => 'رمز OTP غير صالح',
     'reset_password' => 'تم تحديث كلمة المرور بنجاح',
     'password_changed' => 'تم تغيير كلمة المرور بنجاح',
+    'create_success' => 'تم الانشاء بنجاح',
+    'update_success' => 'تم التحديث بنجاح',
+    'delete_success' => 'تم الحذف بنجاح',
+    'message_sent_successfully' => 'تم إرسال الرسالة بنجاح',
 ];

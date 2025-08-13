@@ -67,13 +67,14 @@ class AuthController extends Controller
 
     public function getProfile()
     {   
-        $user = User::with('attribute')->where('id',auth()->user()->id)->first();
+        $user = User::with('attribute' , 'attribute.nationality' , 'attribute.city' , 'attribute.country')->where('id',auth()->user()->id)->first();
         // $user = auth()->user()->with('attribute');
+        // return $user;
         return $this->successResponse(UserResource::make($user));
     }
 
-    public function updateImage()
-    {
+    // public function updateImage()
+    // {
         
-    }
+    // }
 }

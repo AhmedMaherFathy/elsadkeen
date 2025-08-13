@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card mb-4">
         <img src="{{ $story->getRawOriginal('image') == null ? asset('storage/success-story.png') : $story->image }}" 
-             class="card-img-top d-flex " alt="Story Image" style="width:30rem;">
+             class="card-img-top d-flex " alt="Story Image" style="width:20rem;height:20rem;object-fit:cover;">
 
         <div class="card-body">
 

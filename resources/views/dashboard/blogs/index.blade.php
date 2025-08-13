@@ -9,9 +9,9 @@
     <div class="card ">
         <div class="card-header d-flex justify-content-between align-items-center w-100"
             style="direction: rtl;">
-            <h3 class="card-title mb-0">قصص النجاح</h3>
-            <a href="{{route('dashboard.success_stories.create')}}" class="btn btn-success" style="content: none !important;">
-            اضافه قصة
+            <h3 class="card-title mb-0">المدونات</h3>
+            <a href="{{route('dashboard.blogs.create')}}" class="btn btn-success" style="content: none !important;">
+            اضافه مدونة
             </a>
             
         </div>
@@ -57,26 +57,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($stories as $index => $story)
+                                @foreach ($blogs as $index => $blog)
                                     <tr role="row" class="odd">
-                                        <td class="sorting_1">{{ $stories->firstItem() + $index }}</td>
-                                        <td>{{ $story->title }}</td>
-                                        <td>{{ $story->description }}</td>
+                                        <td class="sorting_1">{{ $blogs->firstItem() + $index }}</td>
+                                        <td>{{ $blog->title }}</td>
+                                        <td>{{ $blog->content }}</td>
                                         <td>
-                                            <img src="{{ $story->image }}" alt="story.jpg" style="width: 4rem">
+                                            <img src="{{ $blog->image }}" alt="blog.jpg" style="width: 4rem">
                                         </td>
                                         <td>
-                                            <a href="{{route('dashboard.success_stories.show',$story->id)}}" class="btn btn-primary btn-sm">عرض</a>
-                                            <a href="{{route('dashboard.success_stories.edit',$story->id)}}" class="btn btn-info btn-sm">تعديل</a>
-                                            {{-- <form action="{{ route('dashboard.success_stories.delete', $story->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('هل أنت متأكد من حذف هذا المشرف؟');">
+                                            {{-- <a href="{{route('dashboard.blogs.delete',$blog->id)}}" class="btn btn-primary btn-sm">عرض</a> --}}
+                                            <a href="{{route('dashboard.blogs.edit',$blog->id)}}" class="btn btn-info btn-sm">تعديل</a>
+                                            <form action="{{ route('dashboard.blogs.delete', $blog->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('هل أنت متأكد من حذف هذه المدونه');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">حذف</button>
-                                            </form> --}}
+                                            </form>
                                         </td>
                                         <td>
-                                            <a href="{{ route('dashboard.success_stories.change_published_status', $story->id) }}" class="btn {{ $story->published_status == 1 ? 'btn-success' : 'btn-warning'  }} btn-sm">
-                                                {{ $story->published_status == 1 ? 'تعطيل' : 'تفعيل' }}
+                                            <a href="{{ route('dashboard.blogs.change_published_status', $blog->id) }}" class="btn {{ $blog->published_status == 1 ? 'btn-success' : 'btn-warning'  }} btn-sm">
+                                                {{ $blog->published_status == 1 ? 'تعطيل' : 'تفعيل' }}
                                             </a>
                                         </td>
                                     </tr>
@@ -89,7 +89,7 @@
                 <div class="row">
 
                     <div class="col-12 d-flex justify-content-end">
-                        {{ $stories->links() }}
+                        {{ $blogs->links() }}
                     </div>
                 </div>
             </div>

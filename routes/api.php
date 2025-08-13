@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\ForgetPasswordController;
-use App\Http\Controllers\Api\NationalityController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\SelectMenuController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\SelectMenuController;
+use App\Http\Controllers\Api\UserLikeController;
+use App\Http\Controllers\Api\NationalityController;
+use App\Http\Controllers\Api\SupportChatController;
+use App\Http\Controllers\Api\ForgetPasswordController;
 
 Route::get('/user', function (Request $request) {
     return view('forget-password-otp');
@@ -28,4 +30,10 @@ Route::prefix('user')->group(function(){
     Route::get('list/nationalities',[NationalityController::class,'nationalityList']);
     Route::get('list/countries',[SelectMenuController::class,'countryList']);
     Route::get('list/cities/{id}',[SelectMenuController::class,'cityList']);
+
+    Route::post('support-messages',[SupportChatController::class,'sendMessage'])->middleware('auth:sanctum');
+    Route::get('support-messages',[SupportChatController::class,'getMessages'])->middleware('auth:sanctum');
+
+    Route::get('/like/user/{id}', [UserLikeController::class, 'likeUser'])->middleware('auth:sanctum');
+    Route::get('/like/list', [UserLikeController::class, 'myFavoriteUsers'])->middleware('auth:sanctum');
 });

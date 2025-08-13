@@ -111,6 +111,7 @@
                               transition duration-200 ease-in-out text-right"
                     placeholder="ادخل كلمة المرور" required>
             </div>
+                <a href="{{route('dashboard.password.request')}}" class="text-sm text-blue-600 hover:underline ">نسيت كلمة المرور؟</a>
 
             <div class="flex justify-start"> {{-- Changed to justify-start for RTL button alignment --}}
                 <button type="submit" style="background-color: #887925;"

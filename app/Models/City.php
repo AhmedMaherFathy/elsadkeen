@@ -17,4 +17,13 @@ class City extends Model
     protected $translatable = [
         'name'
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+    public function attributes()
+    {
+        return $this->hasMany(Attribute::class);
+    }
 }

@@ -72,4 +72,15 @@ class User extends Authenticatable
 
         return asset($this->gender === 'male' ? 'storage/male.png' : 'storage/female.png');
     }
+
+    public function likes()
+    {
+        // Users I like
+        return $this->belongsToMany(User::class, 'favorites', 'user_id', 'liked_user_id')
+                    ->withTimestamps();
+    }
+    public function usersILike()
+    {
+        return $this->belongsToMany(User::class, 'favorites', 'liked_user_id', 'user_id');
+    }
 }

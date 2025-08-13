@@ -18,6 +18,6 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'registered' => "Account Registered successfully",
     'loggedIn' => "Logged in successfully",
-    'wrong_credentials' => "Invalid credentials",
+    'wrong_credential' => "Invalid credentials",
     
 ];

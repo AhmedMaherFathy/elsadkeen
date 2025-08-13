@@ -25,7 +25,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
-                المدونات
+                المنشورات
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -34,6 +34,12 @@
                 <a href="{{route('dashboard.success_stories.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>قصص النجاح</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('dashboard.blogs.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> المدونات</p>
                 </a>
               </li>
               {{-- <li class="nav-item">
@@ -49,6 +55,15 @@
                 </a> --}}
               </li>
             </ul>
+          </li>
+          <li class="nav-item has-treeview">
+              <a href="{{route('dashboard.support_chats.index')}}" class="nav-link">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                رسائل الدعم
+              </p>
+              <i class="right fas fa-angle-left"></i>
+            </a>
           </li>
         </ul>
       </nav>

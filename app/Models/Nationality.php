@@ -12,4 +12,9 @@ class Nationality extends Model
     protected $translatable = ['name'];
     
     protected $fillable = ['name'];
+
+    public function attributes()
+    {
+        return $this->hasMany(Attribute::class);
+    }
 }
