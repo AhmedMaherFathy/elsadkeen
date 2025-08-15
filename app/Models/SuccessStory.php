@@ -3,23 +3,30 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class SuccessStory extends Model
 {
+    use HasTranslations;
+    
     protected $fillable=[
-        'bride_name',
-        'groom_name',
         'title',
-        'description',
+        'content',
         'image',
         'status',
         'published_status',
     ];
 
-    public function getImageAttribute()
-    {   
-        // info($this->attributes['image']);
-        return asset('storage/' . $this->attributes['image']) ?? asset('storage/success-story.png');
+    protected $translatable = [
+        'title',
+        'content'
+    ];
+
+    public function getImageAttribute($value)
+    {
+        return $value
+            ? asset('storage/' . $value)
+            : asset('assets/img/default.png');
     }
 
     public function setImageAttribute()

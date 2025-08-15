@@ -40,6 +40,7 @@ Route::prefix('user')->group(function(){
     Route::get('/like/list', [UserLikeController::class, 'myFavoriteUsers'])->middleware('auth:sanctum');
 
     Route::get('/blogs',[BlogController::class,'index']);
+    Route::get('/success-stories',[BlogController::class,'successStories']);
 
     Route::get('/aboutUs',[SettingController::class,'aboutUs']);
 });

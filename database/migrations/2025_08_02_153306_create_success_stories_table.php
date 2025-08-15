@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('success_stories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
+            $table->json('title');
+            $table->json('content');
             $table->string('image')->nullable();
-            $table->string('bride_name')->nullable();
-            $table->string('groom_name')->nullable();
             $table->string('status')->default('under_review'); //published ,refused , under_review
             $table->tinyInteger('published_status')->default(0); //1=>yes  , 0=>no 
             $table->timestamps();

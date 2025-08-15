@@ -7,6 +7,7 @@ use App\Traits\HttpResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BlogResource;
+use App\Models\SuccessStory;
 
 class BlogController extends Controller
 {
@@ -16,5 +17,11 @@ class BlogController extends Controller
     {
         $blogs = Blog::latest()->paginate();
         return $this->paginatedResponse($blogs,BlogResource::class);
+    }
+
+    public function successStories()
+    {
+        $stories = SuccessStory::latest()->paginate();
+        return $this->paginatedResponse($stories,BlogResource::class);
     }
 }

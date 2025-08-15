@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             SelectMenuSeeder::class,
             BlogSeeder::class,
+            SuccessStorySeeder::class,
         ]);
     }
 }
