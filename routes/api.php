@@ -41,6 +41,7 @@ Route::prefix('user')->group(function(){
 
     Route::get('/blogs',[BlogController::class,'index']);
     Route::get('/success-stories',[BlogController::class,'successStories']);
+    Route::get('/success-stories/details',[BlogController::class,'successStoryDetails']);
 
     Route::get('/aboutUs',[SettingController::class,'aboutUs']);
 });

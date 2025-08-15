@@ -24,4 +24,12 @@ class BlogController extends Controller
         $stories = SuccessStory::latest()->paginate();
         return $this->paginatedResponse($stories,BlogResource::class);
     }
+
+    public function successStoryDetails()
+    {
+        $data['image'] = asset('assets/img/success-story.png');
+        $data['count_stories'] = SuccessStory::where('published_status',1)->count();
+
+        return $this->successResponse($data);
+    }
 }
