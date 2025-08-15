@@ -51,7 +51,7 @@ return new class extends Migration
             $table->string('marital_status'); //single ,married , divorced , widower
             $table->string('type_of_marriage');
             $table->unsignedTinyInteger('age');
-            $table->string('children_number');
+            $table->unsignedTinyInteger('children_number');
             $table->unsignedTinyInteger('weight');
             $table->unsignedTinyInteger('height');
             // $table->string('skin_color');
@@ -65,7 +65,7 @@ return new class extends Migration
             $table->string('job')->nullable();
             // $table->string('work_field')->nullable();
             $table->unsignedBigInteger('income');
-            $table->string('health_condition');
+            // $table->string('health_condition');
             $table->text('life_partner')->nullable();
             $table->text('about_me')->nullable();
             $table->timestamps();

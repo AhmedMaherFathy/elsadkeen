@@ -13,4 +13,6 @@ return[
     'update_success' => 'تم التحديث بنجاح',
     'delete_success' => 'تم الحذف بنجاح',
     'message_sent_successfully' => 'تم إرسال الرسالة بنجاح',
+    'only_one' => 'زوجه واحده',
+    'multi' => 'تعدد زوجات',
 ];
