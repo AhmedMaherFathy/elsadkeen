@@ -35,4 +35,12 @@ class UserLikeController extends Controller
         $users = User::whereIn('id',$favoriteIds)->paginate();
         return $this->paginatedResponse($users, UserResource::class );
     }
+
+    public function addedMeToFav()
+    {
+        $user = auth()->user();
+        $favoriteIds = Favorite::where('liked_user_id',$user->id)->pluck('user_id');
+        $users = User::whereIn('id',$favoriteIds)->paginate();
+        return $this->paginatedResponse($users, UserResource::class);
+    }
 }
