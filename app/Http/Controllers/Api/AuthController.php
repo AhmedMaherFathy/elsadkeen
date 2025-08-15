@@ -74,5 +74,21 @@ class AuthController extends Controller
         return $this->successResponse(UserResource::make($user));
     }
 
-    
+    public function logoutMobile(Request $request)
+    {
+        try {
+            // Delete only the token used for the current request (mobile)
+            $request->user()->currentAccessToken()->delete();
+
+            return $this->successResponse(
+                null,
+                __('user.logout')
+            );
+        } catch (\Exception $e) {
+            return $this->errorResponse(
+                'Something went wrong while logging out',
+                500
+            );
+        }
+    }
 }

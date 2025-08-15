@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AttributeResource extends JsonResource
@@ -14,6 +15,9 @@ class AttributeResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        // info($this->user_id);
+        $gender = DB::table('users')->where('id',$this->user_id)->select('gender')->first();
+        info($gender->gender);
         $locale = app()->getLocale();
         return [
             // 'nationality'                => $this->whenLoaded('nationality'),
@@ -57,18 +61,18 @@ class AttributeResource extends JsonResource
                 $this->relationLoaded('financialSituation'),
                 fn () => $this->financialSituation?->getTranslation('name', app()->getLocale())
             ),
-            'marital_status'             => $this->marital_status,
-            'type_of_marriage'           => $this->type_of_marriage,
+            'marital_status'             => $locale == 'ar' ? ($gender->gender == "male" ? __("user.{$this->marital_status}") :  __("user.{$this->marital_status}_she") ) : __("user.{$this->marital_status}"),
+            'type_of_marriage'           => __("user.{$this->type_of_marriage}"),
             'age'                        => $this->age,
             'children'                   => $this->children_number,
             'weight'                     => $this->weight,
             'height'                     => $this->height,
             // 'skin_color'                 => $this->skin_color,
             // 'physique'                   => $this->physique,
-            'religious_commitment'       => $this->religious_commitment,
-            'prayer'                     => $this->prayer,
-            'smoking'                    => $this->smoking,
-            'hijab'                      => $this->hijab,
+            'religious_commitment'       => __("user.{$this->religious_commitment}"),
+            'prayer'                     => __("user.{$this->prayer}"),
+            'smoking'                    => $this->smoking ? __('user.smoking') : __('user.not_smoking'),
+            'hijab'                      => __("user.{$this->hijab}"),
             // 'educational_qualification'  => $this->educational_qualification,
             // 'financial_situation'        => $this->financial_situation,
             'job'                        => $this->job,

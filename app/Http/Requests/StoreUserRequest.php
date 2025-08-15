@@ -30,7 +30,6 @@ class StoreUserRequest extends FormRequest
             'country_code'              => 'required|string|max:10',
             'phone'                     => 'required|string|unique:users,phone|max:20',
             'password'                  => 'required|string|min:6|confirmed',
-            
         ];
     }
 

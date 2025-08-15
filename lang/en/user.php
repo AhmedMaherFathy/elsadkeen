@@ -12,4 +12,18 @@ return[
     'update_success' => 'Updated successfully.',
     'delete_success' => 'Deleted successfully.',
     'message_sent_successfully' => 'Message Sent Successfully',
+    'single' => 'Single',
+    'male' => 'Male',
+    'female' => 'Female',
+    'only_one' => 'Only One Wife',
+    'multi' => 'Many wives',
+    'married' => 'Married',
+    'divorced' => 'Divorced',
+    'widower' => 'Widower',
+    'religious' => 'Religious',
+    'little_religious' => 'Little religious',
+    'irreligious' => 'Irreligious',
+    'smoking' => 'Smoking',
+    'not_smoking' => 'Not Smoking',
+    
 ];
