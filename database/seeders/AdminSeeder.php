@@ -15,7 +15,7 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         // Default admin image path
-        $defaultImage = 'default.jpg';
+        $defaultImage = null;
         
         // Create 15 admin users
         for ($i = 1; $i <= 15; $i++) {

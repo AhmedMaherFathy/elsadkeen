@@ -28,20 +28,40 @@ return new class extends Migration
                         ->nullable()
                         ->constrained('cities')
                         ->nullOnDelete();
+            $table->foreignId('skin_color_id')
+                        ->nullable()
+                        ->constrained('skin_colors')
+                        ->nullOnDelete();
+            $table->foreignId('qualification_id')
+                        ->nullable()
+                        ->constrained('qualifications')
+                        ->nullOnDelete();
+            $table->foreignId('financial_situation_id')
+                        ->nullable()
+                        ->constrained('financial_situations')
+                        ->nullOnDelete();
+            $table->foreignId('health_condition_id')
+                        ->nullable()
+                        ->constrained('health_conditions')
+                        ->nullOnDelete();
+            $table->foreignId('physique_id')
+                        ->nullable()
+                        ->constrained('physiques')
+                        ->nullOnDelete();
             $table->string('marital_status'); //single ,married , divorced , widower
             $table->string('type_of_marriage');
             $table->unsignedTinyInteger('age');
             $table->string('children_number');
             $table->unsignedTinyInteger('weight');
             $table->unsignedTinyInteger('height');
-            $table->string('skin_color');
-            $table->string('physique');
+            // $table->string('skin_color');
+            // $table->string('physique');
             $table->string('religious_commitment');
             $table->string('prayer');
             $table->unsignedTinyInteger('smoking')->default(0);
             $table->string('hijab')->nullable();
-            $table->string('educational_qualification');
-            $table->string('financial_situation');  //الوضع المادى
+            // $table->string('qualification');
+            // $table->string('financial_situation');  //الوضع المادى
             $table->string('job')->nullable();
             // $table->string('work_field')->nullable();
             $table->unsignedBigInteger('income');

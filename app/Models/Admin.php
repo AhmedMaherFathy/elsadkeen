@@ -19,8 +19,10 @@ class Admin extends Authenticatable
         'email'
     ];
 
-    public function getImageAttribute()
+    public function getImageAttribute($value)
     {
-        return asset('storage/' . $this->attributes['image']);
+        return $value
+            ? asset('storage/' . $value)
+            : asset('assets/img/default.png');
     }
 }

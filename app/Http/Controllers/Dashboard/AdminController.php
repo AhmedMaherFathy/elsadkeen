@@ -15,7 +15,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $admins = Admin::paginate(10);
+        $admins = Admin::latest()->paginate(10);
         // return response()->json($admins);
         return view('dashboard.admins.index', compact('admins'));
     }

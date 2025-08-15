@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             CitySeeder::class,
             PermissionSeeder::class,
+            SelectMenuSeeder::class,
+            BlogSeeder::class,
         ]);
     }
 }

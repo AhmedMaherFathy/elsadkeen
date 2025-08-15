@@ -5,15 +5,22 @@ namespace App\Models;
 use App\Traits\HttpResponse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Translatable\HasTranslations;
 
 class Blog extends Model
 {
+    use HasTranslations;
 
     protected $fillable = [
         'title',
         'content',
         'image',
         'published_status'
+    ];
+
+    protected $translatable = [
+        'title',
+        'content'
     ];
 
     // public function getImageAttribute()
@@ -27,7 +34,7 @@ class Blog extends Model
     {
         return $value
             ? asset('storage/' . $value)
-            : null;
+            : asset('assets/img/success-story.png');
     }
 
     public function setImageAttribute($value)

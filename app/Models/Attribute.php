@@ -17,19 +17,19 @@ class Attribute extends Model
             'children_number',
             'weight',
             'height',
-            'skin_color',
-            'physique',
+            'skin_color_id',
+            'physique_id',
             'religious_commitment',
             'prayer', 
             'smoking',
             'hijab',
             'gender',
-            'educational_qualification',
-            'financial_situation',
+            'qualification_id',
+            'financial_situation_id',
             'job',
             // 'work_field',
             'income',
-            'health_condition',
+            'health_condition_id',
             'life_partner',
             'about_me',
     ];
@@ -52,5 +52,30 @@ class Attribute extends Model
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function financialSituation()
+    {
+        return $this->belongsTo(FinancialSituation::class);
+    }
+
+    public function healthCondition()
+    {
+        return $this->belongsTo(HealthCondition::class);
+    }
+
+    public function physique()
+    {
+        return $this->belongsTo(Physique::class);
+    }
+
+    public function qualification()
+    {
+        return $this->belongsTo(Qualification::class);
+    }
+
+    public function skinColor()
+    {
+        return $this->belongsTo(SkinColor::class);
     }
 }

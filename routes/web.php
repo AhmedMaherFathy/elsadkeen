@@ -8,15 +8,6 @@ use App\Http\Controllers\Dashboard\AdminForgetPassword;
 use App\Http\Controllers\Dashboard\SupportChatController;
 use App\Http\Controllers\Dashboard\SuccessStoryController;
 
-Route::get('/files/{filename}', function ($filename) {
-    $path = public_path($filename);
-
-    if (!file_exists($path)) {
-        abort(404, 'File not found.');
-    }
-
-    return response()->file($path);
-});
 
 Route::get('dashboard/login', function () {
     return view('dashboard.login');

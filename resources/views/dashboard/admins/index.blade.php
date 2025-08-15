@@ -4,6 +4,12 @@
 .card-header::after {
   content: none !important;
 }
+
+#example2 th,
+#example2 td {
+    vertical-align: middle;
+    text-align: center;
+}
 </style>
 <div class="col-12">
     <div class="card ">
