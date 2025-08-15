@@ -32,6 +32,11 @@ Route::prefix('user')->group(function(){
     Route::get('list/nationalities',[NationalityController::class,'nationalityList']);
     Route::get('list/countries',[SelectMenuController::class,'countryList']);
     Route::get('list/cities/{id}',[SelectMenuController::class,'cityList']);
+    Route::get('list/physiques',[SelectMenuController::class,'physiqueList']);
+    Route::get('list/financial-situations',[SelectMenuController::class,'financialSituationList']);
+    Route::get('list/skin-colors',[SelectMenuController::class,'skinColorList']);
+    Route::get('list/health-conditions',[SelectMenuController::class,'healthConditionList']);
+    Route::get('list/qualifications',[SelectMenuController::class,'qualificationList']);
 
     Route::post('support-messages',[SupportChatController::class,'sendMessage'])->middleware('auth:sanctum');
     Route::get('support-messages',[SupportChatController::class,'getMessages'])->middleware('auth:sanctum');
