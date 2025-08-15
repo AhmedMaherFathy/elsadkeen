@@ -14,7 +14,7 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
-        $query = User::with('attribute','attribute.nationality', 'attribute.city', 'attribute.country');
+        $query = User::with('attribute','attribute.nationality', 'attribute.city', 'attribute.country','attribute.skinColor','attribute.healthCondition', 'attribute.qualification','attribute.financialSituation','attribute.physique');
 
         if ($request->has('user_name')) {
             $query->where('name', 'LIKE','%'.$request->user_name.'%');
@@ -90,10 +90,10 @@ class SearchController extends Controller
             });
         }
 
-        if($request->has('educational_qualification'))
+        if($request->has('qualification_id'))
         {
             $query->whereHas('attribute',function($q) use ($request){
-                $q->where('educational_qualification',$request->educational_qualification);
+                $q->where('qualification_id',$request->qualification_id);
             });
         }
 
@@ -102,9 +102,26 @@ class SearchController extends Controller
             if($request->latest == 1)
                 $query->latest();
         }
-
-        $users = $query->get();
-        // return response()->json($users);
-        return $this->successResponse(UserResource::collection($users));
+        // $totalUsers = $query->count();
+        $users = $query->paginate();
+        // return response()->json($totalUsers);
+        return response()->json([
+        'total' => $users->total(), // ✅ Added total here
+        'data' => UserResource::collection($users),
+        'links' => [
+            'first' => $users->url(1),
+            'last' => $users->url($users->lastPage()),
+            'next' => $users->nextPageUrl(),
+            'prev' => $users->previousPageUrl()
+        ],
+        'meta' => [
+            'current_page' => $users->currentPage(),
+            'from' => $users->firstItem(),
+            'last_page' => $users->lastPage()
+        ],
+        'message' => 'fetched',
+        'code' => 200,
+        'type' => 'success'
+    ]);
     }
 }
