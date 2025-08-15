@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\Favorite;
+use App\Models\Ignore;
 
 class UserLikeController extends Controller
 {
@@ -22,7 +23,14 @@ class UserLikeController extends Controller
             return response()->json(['message' => 'لا يمكنك الاعجاب بنفسك'], 400);
         }
 
-        $user->likes()->syncWithoutDetaching([$id]);
+        DB::transaction(function () use ($user, $id) {
+            Ignore::where('user_id', $user->id)
+                ->where('ignored_user_id', $id)
+                ->delete();
+
+            $user->likes()->syncWithoutDetaching([$id]);
+        });
+
 
         return $this->successResponse(message: 'تم الإعجاب بالمستخدم بنجاح');
     }

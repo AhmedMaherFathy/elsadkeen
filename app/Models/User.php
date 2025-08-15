@@ -79,6 +79,14 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'favorites', 'user_id', 'liked_user_id')
                     ->withTimestamps();
     }
+
+    public function ignores()
+    {
+        // Users I like
+        return $this->belongsToMany(User::class, 'ignores', 'user_id', 'ignored_user_id')
+                    ->withTimestamps();
+    }
+
     public function usersILike()
     {
         return $this->belongsToMany(User::class, 'favorites', 'liked_user_id', 'user_id');
