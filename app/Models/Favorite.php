@@ -11,4 +11,8 @@ class Favorite extends Model
         'liked_user_id',
     ];
     
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\BlogController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\AdminForgetPassword;
+use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\SupportChatController;
 use App\Http\Controllers\Dashboard\SuccessStoryController;
 
@@ -88,8 +89,12 @@ Route::prefix('dashboard')->middleware('admin.auth')->group(function () {
 
             Route::post('/{userId}/reply', [SupportChatController::class, 'adminReply'])
                 ->name('reply');
-
         });
+
+        Route::prefix('about-us')->name('dashboard.about-us.')->group(function(){
+            Route::get('/',[SettingController::class,'viewAboutUs'])->name('index');
+            Route::put('update',[SettingController::class,'updateAboutUs'])->name('update');
+        }); 
 });
 
 // Route::get('dashoard');

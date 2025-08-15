@@ -32,23 +32,48 @@ class AttributeResource extends JsonResource
                 $this->relationLoaded('country'),
                 fn () => $this->country?->getTranslation('name', app()->getLocale())
             ),
+
+            'skin_color' => $this->when(
+                $this->relationLoaded('skinColor'),
+                fn () => $this->skinColor?->getTranslation('name', app()->getLocale())
+            ),
+
+            'health_condition' => $this->when(
+                $this->relationLoaded('healthCondition'),
+                fn () => $this->healthCondition?->getTranslation('name', app()->getLocale())
+            ),
+
+            'physique' => $this->when(
+                $this->relationLoaded('physique'),
+                fn () => $this->physique?->getTranslation('name', app()->getLocale())
+            ),
+
+            'qualification' => $this->when(
+                $this->relationLoaded('qualification'),
+                fn () => $this->qualification?->getTranslation('name', app()->getLocale())
+            ),
+
+            'financial_situation' => $this->when(
+                $this->relationLoaded('financialSituation'),
+                fn () => $this->financialSituation?->getTranslation('name', app()->getLocale())
+            ),
             'marital_status'             => $this->marital_status,
             'type_of_marriage'           => $this->type_of_marriage,
             'age'                        => $this->age,
             'children'                   => $this->children_number,
             'weight'                     => $this->weight,
             'height'                     => $this->height,
-            'skin_color'                 => $this->skin_color,
-            'physique'                   => $this->physique,
+            // 'skin_color'                 => $this->skin_color,
+            // 'physique'                   => $this->physique,
             'religious_commitment'       => $this->religious_commitment,
             'prayer'                     => $this->prayer,
             'smoking'                    => $this->smoking,
             'hijab'                      => $this->hijab,
-            'educational_qualification'  => $this->educational_qualification,
-            'financial_situation'        => $this->financial_situation,
+            // 'educational_qualification'  => $this->educational_qualification,
+            // 'financial_situation'        => $this->financial_situation,
             'job'                        => $this->job,
             'income'                     => $this->income,
-            'health_condition'           => $this->health_condition,
+            // 'health_condition'           => $this->health_condition,
             'life_partner'               => $this->life_partner,
             'about_me'                   => $this->about_me,
         ];

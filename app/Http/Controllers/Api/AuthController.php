@@ -67,7 +67,8 @@ class AuthController extends Controller
 
     public function getProfile()
     {   
-        $user = User::with('attribute' , 'attribute.nationality' , 'attribute.city' , 'attribute.country')->where('id',auth()->user()->id)->first();
+        $user = User::with('attribute' , 'attribute.nationality' , 'attribute.city' , 'attribute.country','attribute.skinColor','attribute.healthCondition', 'attribute.qualification','attribute.financialSituation','attribute.physique')
+                    ->where('id',auth()->user()->id)->first();
         // $user = auth()->user()->with('attribute');
         // return $user;
         return $this->successResponse(UserResource::make($user));

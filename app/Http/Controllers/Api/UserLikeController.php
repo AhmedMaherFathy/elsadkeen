@@ -30,10 +30,9 @@ class UserLikeController extends Controller
     public function myFavoriteUsers()
     {
         $user = auth()->user();
-        $favorites = Favorite::with('usersILike')
-            ->where('user_id', $user->id)
-            ->paginate(10);
-
-        return $this->paginatedResponse($favorites, UserResource::class );
+        $favoriteIds = Favorite::where('user_id',$user->id)->pluck('liked_user_id');
+        // return $favoriteIds;
+        $users = User::whereIn('id',$favoriteIds)->paginate();
+        return $this->paginatedResponse($users, UserResource::class );
     }
 }
