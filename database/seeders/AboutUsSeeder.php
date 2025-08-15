@@ -13,8 +13,12 @@ class AboutUsSeeder extends Seeder
      */
     public function run(): void
     {
+        $content = "<b>من نحن</b><br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
         AboutUs::create([
-            'description'=> 'لوريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة من الأحرف بشكل عشوائي أخذتها من نص'
+            'description' => $content
         ]);
     }
 }

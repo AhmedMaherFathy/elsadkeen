@@ -15,4 +15,7 @@ return[
     'message_sent_successfully' => 'تم إرسال الرسالة بنجاح',
     'only_one' => 'زوجه واحده',
     'multi' => 'تعدد زوجات',
+    'single' => 'عازب/ه',
+    'male' => 'ذكر',
+    'female' => 'انثى',
 ];
