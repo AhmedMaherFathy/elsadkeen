@@ -27,6 +27,7 @@ Route::prefix('user')->group(function(){
         Route::post('reset-password', [ForgetPasswordController::class, 'resetPassword']);  
     });
     Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logoutMobile']);
+    Route::middleware('auth:sanctum')->delete('/delete-account', [AuthController::class, 'deleteAccount']);
 
     Route::post('attributes',[AuthController::class,'storeAttributes'])->middleware('auth:sanctum');
     Route::post('update-fcmtoken',[AuthController::class,'updateFcmToken'])->middleware('auth:sanctum');

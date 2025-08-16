@@ -91,4 +91,15 @@ class AuthController extends Controller
             );
         }
     }
+
+    public function deleteAccount(Request $request)
+    {
+        $user = auth()->user();
+
+        $user->delete();
+
+        $request->user()->tokens()->delete();
+
+        return $this->successResponse(message: __('user.delete_success'));
+    }
 }
