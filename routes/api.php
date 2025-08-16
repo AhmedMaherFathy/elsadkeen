@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\ContactUsController;
 use App\Http\Controllers\SelectMenuController;
 use App\Http\Controllers\Api\UserLikeController;
 use App\Http\Controllers\Api\NationalityController;
@@ -61,4 +62,6 @@ Route::prefix('user')->group(function(){
     Route::get('/success-stories/details',[BlogController::class,'successStoryDetails']);
 
     Route::get('/aboutUs',[SettingController::class,'aboutUs']);
+    Route::post('/contact-us',[ContactUsController::class,'store'])->middleware('auth:sanctum');
+
 });
