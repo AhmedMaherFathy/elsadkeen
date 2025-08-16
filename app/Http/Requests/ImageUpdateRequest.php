@@ -2,13 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\HttpResponse;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
 class ImageUpdateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+    use HttpResponse;
+    
     public function authorize(): bool
     {
         return true;
@@ -24,5 +25,10 @@ class ImageUpdateRequest extends FormRequest
         return [
             'image' => 'required|mimes:png,jpg,jpeg|max:2048'
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        $this->throwValidationException($validator);
     }
 }
