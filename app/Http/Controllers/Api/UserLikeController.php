@@ -20,7 +20,7 @@ class UserLikeController extends Controller
         $user = auth()->user();
 
         if ($user->id == $id) {
-            return response()->json(['message' => 'لا يمكنك الاعجاب بنفسك'], 400);
+            return response()->json(['message' => 'لا يمكنك الإعجاب بنفسك'], 400);
         }
 
         DB::transaction(function () use ($user, $id) {
@@ -28,11 +28,14 @@ class UserLikeController extends Controller
                 ->where('ignored_user_id', $id)
                 ->delete();
 
-            $user->likes()->syncWithoutDetaching([$id]);
+            if ($user->likes()->where('liked_user_id', $id)->exists()) {
+                $user->likes()->detach($id);
+            } else {
+                $user->likes()->attach($id);
+            }
         });
 
-
-        return $this->successResponse(message: 'تم الإعجاب بالمستخدم بنجاح');
+        return $this->successResponse(message: 'تم تحديث حالة الإعجاب');
     }
 
     public function myFavoriteUsers()
@@ -40,7 +43,7 @@ class UserLikeController extends Controller
         $user = auth()->user();
         $favoriteIds = Favorite::where('user_id',$user->id)->pluck('liked_user_id');
         // return $favoriteIds;
-        $users = User::whereIn('id',$favoriteIds)->paginate();
+        $users = User::with('attribute','attribute.country','attribute.city')->whereIn('id',$favoriteIds)->paginate();
         return $this->paginatedResponse($users, UserResource::class );
     }
 
