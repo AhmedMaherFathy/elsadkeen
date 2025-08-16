@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\UserLikeController;
 use App\Http\Controllers\Api\NationalityController;
 use App\Http\Controllers\Api\SupportChatController;
 use App\Http\Controllers\Api\ForgetPasswordController;
+use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\UserIgnoreController;
 
@@ -31,7 +32,7 @@ Route::prefix('user')->group(function(){
     Route::post('update-fcmtoken',[AuthController::class,'updateFcmToken'])->middleware('auth:sanctum');
     Route::post('search',[SearchController::class,'search']);
     Route::get('profile',[AuthController::class,'getProfile'])->middleware('auth:sanctum');
-
+    Route::get('home/matches-users',[HomeController::class,'getMatches'])->middleware('auth:sanctum');
     Route::get('list/nationalities',[NationalityController::class,'nationalityList']);
     Route::get('list/countries',[SelectMenuController::class,'countryList']);
     Route::get('list/cities/{id}',[SelectMenuController::class,'cityList']);
