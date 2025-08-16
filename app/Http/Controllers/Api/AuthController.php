@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ImageUpdateRequest;
 use App\Http\Requests\StoreUserAttributeRequest;
 
 class AuthController extends Controller
@@ -101,5 +103,21 @@ class AuthController extends Controller
         $request->user()->tokens()->delete();
 
         return $this->successResponse(message: __('user.delete_success'));
+    }
+
+    public function updateImage(ImageUpdateRequest $request)
+    {
+        $validated = $request->validated();
+
+        $user = auth()->user();
+        // info($user->getRawOriginal('image'));die;
+        if ($user->getRawOriginal('image') && Storage::disk('public')->exists($user->getRawOriginal('image'))) {
+            Storage::disk('public')->delete($user->getRawOriginal('image'));
+        }
+
+        $user->image = $validated['image'];
+        $user->save();
+
+        return $this->successResponse(message: __('user.update_success'));
     }
 }

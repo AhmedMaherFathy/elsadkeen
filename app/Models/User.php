@@ -62,12 +62,24 @@ class User extends Authenticatable
         return $this->hasOne(Attribute::class);
     }
 
-    public function getImageAttribute()
+    public function setImageAttribute($value)
     {
-        $image = $this->attributes['image'] ?? null;
+        if ($value) {
+            // If it's a file uploaded via request
+            if ($value instanceof \Illuminate\Http\UploadedFile) {
+                $path = $value->store('images', 'public'); 
+                $this->attributes['image'] = $path;
+            } else {
+                // If it's already a string (like updating with same path)
+                $this->attributes['image'] = $value;
+            }
+        }
+    }
 
-        if ($image && file_exists(public_path('storage/' . $image))) {
-            return asset('storage/' . $image);
+    public function getImageAttribute($value)
+    {
+        if ($value && file_exists(public_path('storage/' . $value))) {
+            return asset('storage/' . $value);
         }
 
         return asset($this->gender === 'male' ? 'assets/img/male.png' : 'assets/img/female.png');
@@ -90,12 +102,5 @@ class User extends Authenticatable
     public function usersILike()
     {
         return $this->belongsToMany(User::class, 'favorites', 'liked_user_id', 'user_id');
-    }
-
-    public function setImageAttribute()
-    {
-        if (isset($this->attributes['image']) && !empty($this->attributes['image'])) {
-            $this->attributes['image'] = 'storage/' . $this->attributes['image'];
-        }
     }
 }
