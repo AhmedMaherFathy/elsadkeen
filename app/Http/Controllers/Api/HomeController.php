@@ -31,8 +31,8 @@ class HomeController extends Controller
                     (CASE WHEN ABS(attribute.age - {$authAttr->age}) <= 3 THEN 10 ELSE 0 END) +
                     (CASE WHEN attribute.qualification_id = {$authAttr->qualification_id} THEN 5 ELSE 0 END) +
                     (CASE WHEN attribute.financial_situation_id = {$authAttr->financial_situation_id} THEN 5 ELSE 0 END) +
-                    (CASE WHEN ABS(attribute.height - {$authAttr->height}) <= 5 THEN 5 ELSE 0 END) +
-                    (CASE WHEN ABS(attribute.weight - {$authAttr->weight}) <= 5 THEN 5 ELSE 0 END) +
+                    (CASE WHEN ABS(CAST(attribute.height AS SIGNED) - {$authAttr->height}) <= 5 THEN 5 ELSE 0 END) +
+                    (CASE WHEN ABS(CAST(attribute.weight AS SIGNED) - {$authAttr->weight}) <= 5 THEN 5 ELSE 0 END) +
                     (CASE WHEN '{$authAttr->hijab}' = 'hijab' AND attribute.hijab = 'hijab' THEN 10 ELSE 0 END)
                 ) as score
             "),
